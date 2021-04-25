@@ -61,7 +61,7 @@ if __name__ == '__main__':
         print("Iteration : %d %s %s" %(i, data['Latitude'], data['Longitude']))
         i += 1
         outerDict["JsonData"].append(data)
-        if (i%100 == 0):
+        if (i%100 == 0): # Redundancy - Download current JSON file every 1000 scans
             print("Dumping %s" %(str(i)))
             name = str(i) + '_wifi_gps_data.json'
             with open(name,'w') as outfile:
@@ -69,11 +69,13 @@ if __name__ == '__main__':
             print("Written!")
 
         # i = howevery many iterations we want to walk for
-        if (i = 100000):
+        if (i == 100000):
+            print("Dumping %s" % (str(i)))
+            name = str(i) + '_wifi_gps_data.json'
             with open(name,'w') as outfile:
                 json.dump(outerDict, outfile, indent=4)
             print("Written!")
             print("Exiting!")
             exit(1)
 
-        time.sleep(5)
+        time.sleep(5) # Adjust this value to our liking
